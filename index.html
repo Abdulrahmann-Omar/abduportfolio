@@ -1,19 +1,773 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>My static Space</title>
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<div class="card">
-			<h1>Welcome to your static Space!</h1>
-			<p>You can modify this app directly by editing <i>index.html</i> in the Files and versions tab.</p>
-			<p>
-				Also don't forget to check the
-				<a href="https://huggingface.co/docs/hub/spaces" target="_blank">Spaces documentation</a>.
-			</p>
-		</div>
-	</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdulrahman Omar | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+        }
+        
+        .skill-pill {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-pill:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+            border-left-color: #6e8efb;
+        }
+        
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 24px;
+            height: calc(100% - 24px);
+            width: 2px;
+            background: #e5e7eb;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #6e8efb;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .active-nav::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-sm z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-2xl font-bold text-indigo-600">Abdulrahman Omar</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link active-nav">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#experience" class="nav-link">Experience</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                <button class="md:hidden focus:outline-none" id="menu-toggle">
+                    <i class="fas fa-bars text-2xl text-indigo-600"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden bg-white py-2 px-4 shadow-md" id="mobile-menu">
+            <div class="flex flex-col space-y-3">
+                <a href="#home" class="nav-link py-2 active-nav">Home</a>
+                <a href="#about" class="nav-link py-2">About</a>
+                <a href="#experience" class="nav-link py-2">Experience</a>
+                <a href="#projects" class="nav-link py-2">Projects</a>
+                <a href="#skills" class="nav-link py-2">Skills</a>
+                <a href="#contact" class="nav-link py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 gradient-bg text-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm Abdulrahman Omar</h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-6">Junior DSAI Student</h2>
+                    <p class="text-lg mb-8">Computer Science & AI student at Zewail City with passion for machine learning, data science, and web development.</p>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="bg-white text-indigo-600 px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition duration-300">Contact Me</a>
+                        <a href="#projects" class="border-2 border-white text-white px-6 py-2 rounded-full font-medium hover:bg-white hover:text-indigo-600 transition duration-300">View Projects</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="w-64 h-64 md:w-80 md:h-80 bg-white rounded-full shadow-xl overflow-hidden border-4 border-white">
+                        <img src="https://avatars.githubusercontent.com/u/143328877?s=400&u=2c3d9d5ef5d20611de80fb7fcf562cd68fe6af6b&v=4" alt="Abdulrahman Omar" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                    <div class="w-64 h-64 rounded-full overflow-hidden border-4 border-indigo-100">
+                        <img src="https://avatars.githubusercontent.com/u/143328877?s=400&u=2c3d9d5ef5d20611de80fb7fcf562cd68fe6af6b&v=4" alt="Abdulrahman Omar" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="md:w-2/3 md:pl-12">
+                    <h3 class="text-2xl font-semibold mb-4">Computer Science & AI Student</h3>
+                    <p class="text-gray-600 mb-6">I'm currently pursuing my Bachelor's degree in Computer Science and Artificial Intelligence at the University of Science and Technology (UST), Zewail City, with expected graduation in July 2026. My coursework includes Deep Learning, Data Structures, Data Mining, Algorithm Design, AI, and Software Engineering.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-graduation-cap text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Education</h4>
+                                <p class="text-gray-600">B.Sc. in Computer Science & AI</p>
+                                <p class="text-gray-600">Zewail City, July 2026</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-briefcase text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Experience</h4>
+                                <p class="text-gray-600">Machine Learning Intern</p>
+                                <p class="text-gray-600">Prodigy InfoTech, 2024</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-code text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Specialization</h4>
+                                <p class="text-gray-600">Machine Learning</p>
+                                <p class="text-gray-600">Full-Stack Development</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-globe text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Languages</h4>
+                                <p class="text-gray-600">Arabic (Native)</p>
+                                <p class="text-gray-600">English (B1+)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="https://linkedin.com/in/ABDULRAHMAN-OMAR" target="_blank" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/" target="_blank" class="bg-gray-800 text-white p-3 rounded-full hover:bg-gray-900 transition duration-300">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://hackerrank.com/" target="_blank" class="bg-green-500 text-white p-3 rounded-full hover:bg-green-600 transition duration-300">
+                            <i class="fab fa-hackerrank"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Work Experience</h2>
+            
+            <div class="relative">
+                <!-- Timeline -->
+                <div class="space-y-8">
+                    <!-- Prodigy InfoTech -->
+                    <div class="relative timeline-item pl-8">
+                        <div class="absolute left-0 top-0 w-6 h-6 rounded-full bg-indigo-500 border-4 border-indigo-100"></div>
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                                <h3 class="text-xl font-semibold">Machine Learning Intern</h3>
+                                <span class="text-indigo-600 font-medium">June – July 2024</span>
+                            </div>
+                            <h4 class="text-lg font-medium text-gray-700 mb-3">Prodigy InfoTech</h4>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                                    <span>Designed and deployed a Support Vector Machine (SVM) model to classify 25,000+ cat/dog images from Kaggle, achieving 99% accuracy (top 5% benchmark).</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                                    <span>Engineered a linear regression model to predict real estate prices using square footage and room metrics, reducing prediction error by 12% vs. baseline.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                                    <span>Developed a K-means clustering algorithm to segment 10,000+ retail customers into 5 behavioral groups, enhancing targeted marketing strategies.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                                    <span>Translated unstructured problem descriptions into technical designs, improving team workflow efficiency by 20%.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- IEEE Multimedia -->
+                    <div class="relative timeline-item pl-8">
+                        <div class="absolute left-0 top-0 w-6 h-6 rounded-full bg-indigo-500 border-4 border-indigo-100"></div>
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                                <h3 class="text-xl font-semibold">Head of IEEE-Multimedia Committee</h3>
+                                <span class="text-indigo-600 font-medium">Sep 2024 – Present</span>
+                            </div>
+                            <h4 class="text-lg font-medium text-gray-700 mb-3">IEEE, Zewail City</h4>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                                    <span>Led an 8-member team to design 30+ graphics, boosting engagement and executing engaging visual content for IEEE events and initiatives.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                                    <span>Coordinated with various IEEE subcommittees to ensure consistent and effective communication of technical content through multimedia channels.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                                    <span>Implemented innovative design strategies and tools to streamline the production process, resulting in a 50% increase in content output efficiency.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Organization Committee -->
+                    <div class="relative timeline-item pl-8">
+                        <div class="absolute left-0 top-0 w-6 h-6 rounded-full bg-indigo-500 border-4 border-indigo-100"></div>
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                                <h3 class="text-xl font-semibold">Organization Committee Member</h3>
+                                <span class="text-indigo-600 font-medium">Dec 2023 – Present</span>
+                            </div>
+                            <h4 class="text-lg font-medium text-gray-700 mb-3">IEEE, Zewail City</h4>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                                    <span>Contributed and supported organizing the "Cyber Security" seminar, presented by Dr. Mohamed Elhamahmy (Chief Expert Of Cybersecurity at NTRA).</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
+                                    <span>Organized and moderated three technical sessions per month, and handled all administrative works related to the sessions.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Featured Projects</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Fraud Detection -->
+                <div class="project-card bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-shield-alt text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Fraud Detection</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Machine learning system to detect fraudulent transactions using comparative analysis of algorithms.</p>
+                    <ul class="space-y-2 text-gray-600 text-sm mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Designed, trained, and evaluated 5+ models on 1M+ transactions, achieving 0.93 F1-score</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Addressed class imbalance via SMOTE, reducing false negatives by 18%</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Streamlined data pipelines using Python (Pandas, Scikit-learn)</span>
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Python</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Scikit-learn</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">SMOTE</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Optuna</span>
+                    </div>
+                </div>
+                
+                <!-- DealX -->
+                <div class="project-card bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-tags text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">DealX</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Full-stack web application for managing and tracking deals using PERN stack.</p>
+                    <ul class="space-y-2 text-gray-600 text-sm mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Developed React.js and Node.js platform with JWT authentication</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Utilized PostgreSQL for efficient data storage and retrieval</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Deployed on Azure with 99.9% uptime through load testing</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Achieved 95% code coverage with Jest and React Testing Library</span>
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">React</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Node.js</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">PostgreSQL</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Azure</span>
+                    </div>
+                </div>
+                
+                <!-- Educational Robot -->
+                <div class="project-card bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-robot text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Educational Robot</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Interactive robot capable of taking attendance and assisting students.</p>
+                    <ul class="space-y-2 text-gray-600 text-sm mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Engineered an Arduino ESP-32-based robot with facial recognition</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Developed Python system for attendance taking and student assistance</span>
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Python</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Arduino</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">ESP-32</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">OpenCV</span>
+                    </div>
+                </div>
+                
+                <!-- Easy Trip Bus System -->
+                <div class="project-card bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-bus text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Easy Trip Bus System</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Bus management system utilizing multiple data structures to optimize route planning.</p>
+                    <ul class="space-y-2 text-gray-600 text-sm mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Built and used data structures to implement the proposed design</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Understood unstructured problem descriptions to derive appropriate designs</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Led a team of three, assigning roles and distributing tasks</span>
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Data Structures</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Algorithms</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Team Leadership</span>
+                    </div>
+                </div>
+                
+                <!-- ML Model for Recognition -->
+                <div class="project-card bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-brain text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">ML Model for Recognition</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Comparative Analysis of ML Models for Activity Recognition using MHEALTH Dataset.</p>
+                    <ul class="space-y-2 text-gray-600 text-sm mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Built and trained five distinct ML models (KNN, Linear Regression, SVM, NN, Logistic Regression)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Conducted comparative analysis of model performance</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Implemented data pre-processing and feature scaling techniques</span>
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Machine Learning</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Python</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Scikit-learn</span>
+                    </div>
+                </div>
+                
+                <!-- Graphic Design -->
+                <div class="project-card bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-palette text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Graphic Design</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Multimedia and graphic design work for IEEE and Entrepreneurship Club.</p>
+                    <ul class="space-y-2 text-gray-600 text-sm mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Designed course certificates template and automated 100+ certificates</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Designed engaging graphics and edited videos for club marketing</span>
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Adobe Photoshop</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Illustrator</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Video Editing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Skills & Expertise</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Technical Skills -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-6 flex items-center">
+                        <i class="fas fa-code text-indigo-600 mr-3"></i>
+                        Technical Skills
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-medium mb-3">Programming Languages</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Python</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">C++</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">SQL</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">R</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">C#</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Java</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">HTML</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">CSS</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">JavaScript</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium mb-3">Tools & Frameworks</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Scikit-learn</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">TensorFlow</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">PyTorch</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Keras</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">OpenCV</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Pandas</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">NumPy</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Docker</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Git</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Azure</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">RESTful APIs</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium mb-3">Data Science</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Machine Learning</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Deep Learning</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Hyperparameter Tuning</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Feature Engineering</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">SMOTE</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">SHAP Analysis</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Soft Skills & Certifications -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-6 flex items-center">
+                        <i class="fas fa-users text-indigo-600 mr-3"></i>
+                        Soft Skills & Certifications
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-medium mb-3">Soft Skills</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Team Leadership</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Agile Methodologies</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Technical Documentation</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Cross-functional Collaboration</span>
+                                <span class="skill-pill bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">JIRA</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium mb-3">Certifications</h4>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-indigo-100 p-2 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-certificate text-indigo-600 text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-medium">Machine Learning Specialization</h5>
+                                        <p class="text-gray-600 text-sm">Deeplearning.ai with Andrew Ng</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium mb-3">Languages</h4>
+                            <div class="flex items-center space-x-8">
+                                <div>
+                                    <div class="flex items-center mb-1">
+                                        <span class="font-medium mr-2">Arabic</span>
+                                        <span class="text-xs text-gray-500">Native</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-indigo-600 h-2 rounded-full" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex items-center mb-1">
+                                        <span class="font-medium mr-2">English</span>
+                                        <span class="text-xs text-gray-500">B1+</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-indigo-600 h-2 rounded-full" style="width: 70%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Get In Touch</h2>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-semibold mb-6 flex items-center">
+                            <i class="fas fa-envelope text-indigo-600 mr-3"></i>
+                            Contact Information
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 p-2 rounded-full mr-4">
+                                    <i class="fas fa-phone text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Phone</h4>
+                                    <p class="text-gray-600">+20 109 808 1484</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 p-2 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Email</h4>
+                                    <p class="text-gray-600">abdu.omar.muhammad@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 p-2 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Location</h4>
+                                    <p class="text-gray-600">Cairo, Egypt</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-medium mb-4">Connect with me</h4>
+                            <div class="flex space-x-4">
+                                <a href="https://linkedin.com/in/ABDULRAHMAN-OMAR" target="_blank" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition duration-300">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://github.com/" target="_blank" class="bg-gray-800 text-white p-3 rounded-full hover:bg-gray-900 transition duration-300">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://hackerrank.com/" target="_blank" class="bg-green-500 text-white p-3 rounded-full hover:bg-green-600 transition duration-300">
+                                    <i class="fab fa-hackerrank"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-semibold mb-6 flex items-center">
+                            <i class="fas fa-paper-plane text-indigo-600 mr-3"></i>
+                            Send Me a Message
+                        </h3>
+                        <form class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                                <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                            </div>
+                            <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 transition duration-300">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="text-2xl font-bold text-indigo-400">Abdulrahman Omar</div>
+                    <p class="text-gray-400">Computer Science & AI Student | Machine Learning Enthusiast</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://linkedin.com/in/ABDULRAHMAN-OMAR" target="_blank" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                    <a href="https://github.com/" target="_blank" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://hackerrank.com/" target="_blank" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-hackerrank text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Abdulrahman Omar. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    mobileMenu.classList.add('hidden');
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active-nav');
+                    });
+                    this.classList.add('active-nav');
+                    
+                    // Scroll to target
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Update active nav link on scroll
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY + 100;
+            
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active-nav');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active-nav');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=AbdulrahmanOmar/abduportfolio" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
 </html>
