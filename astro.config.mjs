@@ -4,7 +4,9 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://abdulrahmanomar.com',
+  site: 'https://abdulrahmann-omar.github.io/abduportfolio', // GitHub Pages URL
+  base: '/abduportfolio/', // IMPORTANT for GitHub Pages
+  outDir: 'docs', // build output folder for GitHub Pages
   integrations: [
     react(),
     tailwind({
