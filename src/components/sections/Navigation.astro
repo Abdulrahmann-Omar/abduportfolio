@@ -132,9 +132,4 @@ const toggleMenu = () => {
 
   window.addEventListener('scroll', handleScroll);
   handleScroll(); // Initial call
-
-  // Cleanup
-  return () => {
-    window.removeEventListener('scroll', handleScroll);
-  };
 </script>
