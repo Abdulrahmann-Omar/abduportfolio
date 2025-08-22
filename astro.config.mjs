@@ -7,8 +7,12 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 // https://astro.build/config
 export default defineConfig({
-  site: isProduction ? 'https://abdulrahmann-omar.github.io' : 'http://localhost:3000',
-  base: isProduction ? '/abduportfolio/' : '/',
+  site: 'https://abdulrahmann-omar.github.io',
+  base: '/abduportfolio/',
+  outDir: 'docs',
+  build: {
+    format: 'directory',
+  },
   integrations: [
     react(),
     tailwind({
@@ -29,9 +33,9 @@ export default defineConfig({
     ssr: {
       noExternal: ['@astrojs/mdx', 'framer-motion']
     },
-    optimizeDeps: {
-      include: ['@headlessui/react', 'framer-motion'],
-      exclude: ['@resvg/resvg-js'],
+    base: './',
+    build: {
+      assetsInlineLimit: 0,
     },
   },
   output: 'static',
