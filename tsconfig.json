@@ -1,5 +1,5 @@
 {
-  "extends": "astro/tsconfigs/strictest",
+  "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -15,14 +15,14 @@
     "isolatedModules": true,
     "noEmit": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": ["vite/client", "@astrojs/react"],
+    "types": ["vite/client", "@astrojs/react", "@astrojs/image/client"],
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true
   },
   "include": [
-    "src",
+    "src/**/*",
     ".astro/types.d.ts"
   ],
   "exclude": [
