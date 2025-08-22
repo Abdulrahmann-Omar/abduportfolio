@@ -1,0 +1,31 @@
+{
+  "name": "abdulrahman-omar-portfolio",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A modern portfolio website for Abdulrahman Omar - AI/ML Engineer and Developer",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.0.0",
+    "@astrojs/tailwind": "^6.0.0",
+    "@preact/signals": "^2.3.1",
+    "astro": "^5.13.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.8.0",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.2"
+  }
+}

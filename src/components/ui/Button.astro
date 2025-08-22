@@ -1,0 +1,22 @@
+---
+const { 
+  href = '#', 
+  variant = 'primary',
+  className = '',
+  ...attrs 
+} = Astro.props;
+
+const baseClasses = 'inline-flex items-center justify-center px-6 py-3 rounded-md font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-matrix-dark focus:ring-matrix-green';
+
+const variants = {
+  primary: 'bg-matrix-green text-matrix-dark hover:bg-matrix-green/90 focus:ring-matrix-green/50',
+  outline: 'border-2 border-matrix-green text-matrix-green hover:bg-matrix-green/10 focus:ring-matrix-green/50',
+  secondary: 'bg-matrix-light text-gray-200 hover:bg-matrix-light/80 focus:ring-matrix-green/50',
+};
+
+const buttonClasses = `${baseClasses} ${variants[variant] || variants.primary} ${className}`;
+---
+
+<a href={href} class={buttonClasses} {...attrs}>
+  <slot />
+</a>

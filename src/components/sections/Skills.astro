@@ -1,0 +1,178 @@
+---
+
+const skills = [
+  {
+    category: 'Programming Languages',
+    items: [
+      'Python', 'C++', 'SQL', 'Java',
+      'JavaScript', 'R', 'C#'
+    ],
+  },
+  {
+    category: 'AI/ML & Data Science',
+    items: [
+      'Deep Learning', 'Natural Language Processing',
+      'Computer Vision', 'Time Series Analysis',
+      'Statistical Modeling'
+    ],
+  },
+  {
+    category: 'ML Frameworks & Tools',
+    items: [
+      'PyTorch', 'TensorFlow', 'Scikit-learn',
+      'XGBoost', 'Hugging Face'
+    ],
+  },
+  {
+    category: 'Data Processing & Visualization',
+    items: [
+      'Pandas', 'NumPy',
+      'Matplotlib/Seaborn', 'Plotly'
+    ],
+  },
+  {
+    category: 'MLOps & Deployment',
+    items: [
+      'Docker', 'Git', 'FastAPI', 'Gradio'
+    ],
+  },
+  {
+    category: 'RAG Systems',
+    items: [
+      'LangChain', 'ChromaDB',
+      'Pinecone', 'Vector Databases',
+      'Document Processing', 'Semantic Search'
+    ],
+  },
+  {
+    category: 'Generative AI',
+    items: [
+      'LLMs', 'GPT Models', 'Diffusion Models',
+      'Prompt Engineering', 'Fine-tuning',
+      'AI Content Generation'
+    ],
+  },
+  {
+    category: 'Automation',
+    items: [
+      'Scripting', 'Workflow Automation',
+      'CI/CD Pipelines', 'Task Scheduling',
+      'API Integration'
+    ],
+  },
+  {
+    category: 'Soft Skills',
+    items: [
+      'Team Leadership', 'Analytical Thinking',
+      'Problem Solving', 'Communication'
+    ],
+  },
+];
+---
+
+<section id="skills" class="py-20 bg-gray-900 relative overflow-hidden">
+  <div class="container mx-auto px-6 relative z-10">
+    <!-- Heading -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4">
+        <span class="gradient-text">Skills & Expertise</span>
+      </h2>
+      <div class="w-24 h-1 bg-emerald-500 mx-auto my-6"></div>
+      <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+        A showcase of my technical skills and areas of expertise in the field of AI and Data Science.
+      </p>
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {skills.map((skillCategory) => (
+        <div class="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-matrix-green/50 transition-all duration-300">
+          <h3 class="text-xl font-bold text-matrix-green mb-6">{skillCategory.category}</h3>
+          <div class="flex flex-wrap gap-2">
+            {skillCategory.items.map((item) => (
+              <span class="px-3 py-1.5 bg-gray-700/50 text-gray-200 rounded-full text-sm">
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+  
+  <!-- Decorative elements -->
+  <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full filter blur-3xl opacity-30 -mr-32 -mt-32"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full filter blur-3xl opacity-30 -ml-48 -mb-48"></div>
+  
+  <!-- Animated background particles -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="particle particle-1"></div>
+    <div class="particle particle-2"></div>
+    <div class="particle particle-3"></div>
+  </div>
+</section>
+
+<style>
+  .gradient-text {
+    background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Skill bar animations */
+  .skill-bar {
+    transform-origin: left;
+    animation: slideIn 1.5s ease-out forwards;
+  }
+
+  .skill-category.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #10b981;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .particle-1 {
+    top: 20%;
+    left: 20%;
+    animation-delay: 0s;
+  }
+  
+  .particle-2 {
+    top: 60%;
+    right: 30%;
+    animation-delay: 2s;
+  }
+  
+  .particle-3 {
+    bottom: 30%;
+    left: 70%;
+    animation-delay: 4s;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateY(-20px) rotate(180deg);
+      opacity: 1;
+    }
+  }
+  
+  /* Hover effects */
+  .bg-gray-800\/50:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+  }
+</style>

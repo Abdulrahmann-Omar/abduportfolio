@@ -1,0 +1,208 @@
+---
+import { signal } from '@preact/signals';
+import ProjectCard from '../ui/ProjectCard.astro';
+
+// Projects from resume
+// Generate a beautiful SVG placeholder with a tech theme
+const generateTechSVG = (seed, colors = ['#10B981', '#3B82F6', '#8B5CF6']) => {
+  const primaryColor = colors[seed % colors.length];
+  const secondaryColor = colors[(seed + 1) % colors.length];
+  
+  return `
+    <svg width="100%" height="100%" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gradient${seed}" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="${primaryColor}" stop-opacity="0.8" />
+          <stop offset="100%" stop-color="${secondaryColor}" stop-opacity="0.6" />
+        </linearGradient>
+        <pattern id="grid${seed}" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="${primaryColor}" stroke-width="0.5" opacity="0.3" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="#0f172a" />
+      <rect width="100%" height="100%" fill="url(#grid${seed})" opacity="0.3" />
+      <circle cx="${50 + (seed * 37) % 200}" cy="${100 + (seed * 23) % 100}" r="30" fill="url(#gradient${seed})" filter="blur(20px)" />
+      <circle cx="${300 - (seed * 29) % 200}" cy="${200 - (seed * 17) % 100}" r="25" fill="url(#gradient${seed})" filter="blur(15px)" />
+      <path d="M0,150 Q100,${100 + seed * 5} 200,${150 + seed * 3} T400,150" 
+            stroke="url(#gradient${seed})" 
+            stroke-width="2" 
+            fill="none" 
+            stroke-dasharray="5,5" />
+    </svg>
+  `;
+};
+
+const allProjects = [
+  {
+    id: 1,
+    title: 'NeuraViva: News-Driven Multi-Stock Forecasting',
+    description: 'Developed an end-to-end framework that integrates financial news sentiment analysis with multi-stock time series forecasting, achieving MSE of 0.02.',
+    tags: ['Python', 'TensorFlow', 'NLP', 'Time Series', 'SHAP', 'LIME', 'XGBoost'],
+    github: 'https://github.com/Abdulrahmann-Omar/FinSentImpact-A-News-Driven-Multi-Stock-Forecasting-Framework',
+    demo: '#',
+    category: 'ai',
+    featured: true,
+    highlights: [
+      'Implemented SVM, XGBoost, Random Forest, and Linear Regression models',
+      'Utilized SHAP and LIME for model explainability',
+      'Integrated news sentiment analysis with stock price prediction'
+    ]
+  },
+  {
+    id: 2,
+    title: 'Underwater Acoustic Target Detection',
+    description: 'Engineered a dual deep learning framework combining CNN-based object detection and Siamese networks for underwater target recognition.',
+    tags: ['Python', 'PyTorch', 'Computer Vision', 'Transfer Learning', 'Gradio'],
+    github: '#',
+    demo: '#',
+    category: 'ai',
+    featured: true,
+    highlights: [
+      'Achieved superior classification accuracy with MobileNetV2',
+      'Deployed scalable inference system via Gradio',
+      'Addressed challenges in marine surveillance and underwater robotics'
+    ]
+  },
+  {
+    id: 3,
+    title: 'Gemini-Powered RAG Pipeline',
+    description: 'Developed a modular RAG pipeline using LangChain, ChromaDB, and Google Gemini for financial document analysis.',
+    tags: ['Python', 'LangChain', 'ChromaDB', 'Google Gemini', 'RAG', 'NLP'],
+    github: 'https://github.com/Abdulrahmann-Omar/PDF-RAG-with-Gemini',
+    demo: '#',
+    category: 'ai',
+    featured: true,
+    highlights: [
+      'Enabled semantic retrieval from financial documents',
+      'Integrated PDF parsing and vector search',
+      'Implemented secure API handling'
+    ]
+  },
+  {
+    id: 4,
+    title: 'Fraud Detection System',
+    description: 'Trained multiple models for fraud detection with up to 98% precision on highly imbalanced IEEE-CIS dataset.',
+    tags: ['Python', 'Scikit-learn', 'SMOTE', 'XGBoost', 'Neural Networks', 'SHAP'],
+    github: 'https://github.com/Abdulrahmann-Omar/Fraud_Detection_With_Various_Models',
+    demo: '#',
+    category: 'ml',
+    featured: true,
+    highlights: [
+      'Tackled class imbalance (0.17% fraud rate)',
+      'Reduced false negatives by 18%',
+      'Delivered SHAP visualizations and insights'
+    ]
+  }
+];
+
+const categories = [
+  { id: 'all', name: 'All Projects' },
+  { id: 'ai', name: 'AI/ML' },
+  { id: 'ml', name: 'Machine Learning' },
+  { id: 'nlp', name: 'NLP' },
+  { id: 'cv', name: 'Computer Vision' }
+];
+
+// ✅ Replace createSignal with signal
+const activeFilter = signal('all');
+
+const filteredProjects = () => {
+  if (activeFilter.value === 'all') return allProjects;
+  return allProjects.filter(project => project.category === activeFilter.value);
+};
+
+const featuredProjects = allProjects.filter(project => project.featured);
+---
+
+
+<section id="projects" class="py-20 bg-matrix-dark/20 relative overflow-hidden">
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4">
+        <span class="gradient-text">Featured Projects</span>
+      </h2>
+      <div class="w-24 h-1 bg-matrix-green mx-auto my-6"></div>
+      <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+        A selection of my recent work in AI, machine learning, and software development.
+      </p>
+    </div>
+
+    {/* Project Filter */}
+    <div class="flex flex-wrap justify-center gap-4 mb-12">
+      {categories.map(category => (
+        <button
+          onClick={() => (activeFilter.value = category.id)}
+          class:list={[
+            'px-4 py-2 rounded-full text-sm font-medium transition-all duration-300',
+            activeFilter.value === category.id
+              ? 'bg-matrix-green text-matrix-dark'
+              : 'text-gray-300 hover:text-white hover:bg-matrix-light/10 border border-matrix-green/20'
+          ]}
+        >
+          {category.name}
+        </button>
+      ))}
+    </div>
+
+    {/* Projects Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {filteredProjects().map(project => (
+        <ProjectCard project={project} client:load />
+      ))}
+    </div>
+
+    {/* View More Button */}
+    <div class="text-center mt-16">
+      <a 
+        href="#" 
+        class="inline-flex items-center px-6 py-3 border border-matrix-green/30 text-matrix-green rounded-md hover:bg-matrix-green/10 transition-colors duration-300 group"
+      >
+        <span>View All Projects</span>
+        <svg 
+          class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            stroke-width="2" 
+            d="M14 5l7 7m0 0l-7 7m7-7H3"
+          ></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+  
+  {/* Decorative elements */}
+  <div class="absolute top-0 right-0 w-64 h-64 bg-matrix-green/5 rounded-full filter blur-3xl opacity-20 -mr-32 -mt-32"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-indigo-500/5 rounded-full filter blur-3xl opacity-20 -ml-48 -mb-48"></div>
+</section>
+
+<style>
+  .gradient-text {
+    background: linear-gradient(135deg, #0f0 0%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Animation for project cards */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .project-card {
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .project-card:nth-child(1) { animation-delay: 0.1s; }
+  .project-card:nth-child(2) { animation-delay: 0.2s; }
+  .project-card:nth-child(3) { animation-delay: 0.3s; }
+  .project-card:nth-child(4) { animation-delay: 0.4s; }
+  .project-card:nth-child(5) { animation-delay: 0.5s; }
+  .project-card:nth-child(6) { animation-delay: 0.6s; }
+</style>

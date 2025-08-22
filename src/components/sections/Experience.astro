@@ -1,0 +1,111 @@
+---
+import Timeline from '../ui/Timeline.astro';
+
+const experiences = [
+  {
+    role: 'AI Intern',
+    company: 'Optomatica',
+    period: 'Aug 2025 – Present',
+    description: [
+      'Evaluated a baseline Retrieval-Augmented Generation (RAG) system using Ragas, designing and curating tailored test datasets for more accurate benchmarking',
+      'Architected and implemented an advanced RAG system for activeQ Protest\'s RFP automation platform, boosting accuracy by 15%+ through optimized retrieval pipelines and query expansion'
+    ]
+  },
+  {
+    role: 'Data Science Intern',
+    company: 'SIGMA EMEA',
+    period: 'Aug 2025 – Present',
+    description: [
+      'Designed and implemented a customer segmentation and traveler-focused recommendation system for a telecom operator with live tracking for accurate personalization',
+      'Delivered personalized offers and predictive insights that enhanced customer engagement and loyalty, leading a team of 5 to develop data-driven business solutions'
+    ]
+  },
+  {
+    role: 'Bachelor of Computer Science and AI',
+    company: 'University of Science and Technology at Zewail City',
+    period: 'Sep 2022 – July 2026',
+    description: [
+      'Relevant Coursework: Deep Learning, Data Mining, Algorithm Design, Software Engineering, RAG, NLP',
+      'Head of Multimedia Committee — IEEE Zewail City (Sep 2024 – Present)',
+      'Organizing Committee Member — IEEE Zewail City (Dec 2023 – Present)'
+    ]
+  }
+];
+---
+
+<section id="experience" class="py-20 bg-matrix-dark/30 relative overflow-hidden">
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4">
+        <span class="gradient-text">Work Experience</span>
+      </h2>
+      <div class="w-24 h-1 bg-matrix-green mx-auto my-6"></div>
+      <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+        My professional journey and the roles that have shaped my career in technology and AI.
+      </p>
+    </div>
+
+    <div class="relative max-w-5xl mx-auto">
+      <Timeline items={experiences} client:load />
+      
+      {/* Decorative elements */}
+      <div class="absolute top-0 -left-20 w-64 h-64 bg-matrix-green/5 rounded-full filter blur-3xl opacity-30 -z-10"></div>
+      <div class="absolute bottom-0 -right-20 w-96 h-96 bg-indigo-500/5 rounded-full filter blur-3xl opacity-30 -z-10"></div>
+    </div>
+    
+    <div class="mt-16 text-center">
+      <a 
+        href="/ABDULRAHMAN OMAR Resume.pdf" 
+        class="inline-flex items-center px-6 py-3 border border-matrix-green/30 text-matrix-green rounded-md hover:bg-matrix-green/10 transition-colors duration-300 group"
+        download
+      >
+        <span>Download Full Resume</span>
+        <svg 
+          class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            stroke-width="2" 
+            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+          ></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .gradient-text {
+    background: linear-gradient(135deg, #0f0 0%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Animation for timeline items */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .timeline-item {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+  .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+  .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+  .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+  .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+</style>

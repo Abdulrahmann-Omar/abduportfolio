@@ -1,0 +1,140 @@
+---
+const links = [
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Contact', href: '#contact' },
+];
+
+let isMenuOpen = false;
+
+const toggleMenu = () => {
+  isMenuOpen = !isMenuOpen;
+  document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+};
+---
+
+<header class="fixed w-full z-50 transition-all duration-300 bg-transparent">
+  <nav class="container mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      <a href="#home" class="text-2xl font-bold text-matrix-green glow">
+        &lt;AO/&gt;
+      </a>
+
+      {/* Desktop Navigation */}
+      <div class="hidden md:flex items-center space-x-8">
+        {links.map((link) => (
+          <a
+            href={link.href}
+            class="text-gray-300 hover:text-matrix-green transition-colors duration-300 font-medium"
+            data-scroll
+          >
+            {link.name}
+          </a>
+        ))}
+        <a
+          href="/ABDULRAHMAN OMAR Resume.pdf" 
+          class="px-4 py-2 bg-matrix-green/10 text-matrix-green border border-matrix-green/30 rounded-md hover:bg-matrix-green/20 transition-colors duration-300"
+          download
+        >
+          Resume
+        </a>
+      </div>
+
+      {/* Mobile menu button */}
+      <div class="md:hidden">
+        <button
+          on:click={toggleMenu}
+          class="text-gray-300 hover:text-matrix-green focus:outline-none"
+          aria-label="Toggle menu"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {isMenuOpen ? (
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            ) : (
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              ></path>
+            )}
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    {/* Mobile menu */}
+    {isMenuOpen && (
+      <div class="md:hidden mt-4 py-4 border-t border-matrix-green/10">
+        <div class="flex flex-col space-y-4">
+          {links.map((link) => (
+            <a
+              href={link.href}
+              class="text-gray-300 hover:text-matrix-green transition-colors duration-300 py-2"
+              on:click={() => (isMenuOpen = false)}
+            >
+              {link.name}
+            </a>
+          ))}
+          <a
+            href="/ABDULRAHMAN OMAR Resume.pdf" 
+            class="px-4 py-2 bg-matrix-green/10 text-matrix-green border border-matrix-green/30 rounded-md hover:bg-matrix-green/20 transition-colors duration-300 text-center"
+            download
+          >
+            Download Resume
+          </a>
+        </div>
+      </div>
+    )}
+  </nav>
+</header>
+
+<script>
+  // Add smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Handle scroll for header
+  const handleScroll = () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+      header.classList.add('bg-matrix-dark/95', 'backdrop-blur-sm');
+      header.classList.remove('bg-transparent');
+    } else {
+      header.classList.add('bg-transparent');
+      header.classList.remove('bg-matrix-dark/95', 'backdrop-blur-sm');
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll);
+  handleScroll(); // Initial call
+
+  // Cleanup
+  return () => {
+    window.removeEventListener('scroll', handleScroll);
+  };
+</script>

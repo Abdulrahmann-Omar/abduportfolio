@@ -1,0 +1,82 @@
+---
+const { project } = Astro.props;
+const { title, description, tags, github, demo, featured = false } = project;
+---
+
+<article class="group relative h-full flex flex-col overflow-hidden rounded-lg border border-matrix-green/20 bg-matrix-light/5 hover:bg-matrix-light/10 transition-all duration-300 hover:border-matrix-green/40 hover:shadow-lg hover:shadow-matrix-green/5">
+  {/* Project Header Placeholder */}
+  <div class="relative h-32 bg-gradient-to-r from-matrix-green/30 via-matrix-light/10 to-matrix-green/30 flex items-center justify-center">
+    <span class="text-matrix-green text-4xl font-bold opacity-70">
+      {title.charAt(0)}
+    </span>
+    {featured && (
+      <div class="absolute top-4 right-4 bg-matrix-green text-matrix-dark text-xs font-bold px-3 py-1 rounded-full">
+        Featured
+      </div>
+    )}
+  </div>
+  
+  {/* Project Content */}
+  <div class="flex-1 p-6 flex flex-col">
+    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-matrix-green transition-colors">
+      {title}
+    </h3>
+    
+    <p class="text-gray-400 mb-4 flex-1">
+      {description}
+    </p>
+    
+    {/* Tags */}
+    {tags && tags.length > 0 && (
+      <div class="flex flex-wrap gap-2 mb-4">
+        {tags.slice(0, 3).map(tag => (
+          <span class="px-2 py-1 text-xs font-medium bg-matrix-green/10 text-matrix-green rounded">
+            {tag}
+          </span>
+        ))}
+        {tags.length > 3 && (
+          <span class="px-2 py-1 text-xs font-medium bg-matrix-light/10 text-gray-400 rounded">
+            +{tags.length - 3} more
+          </span>
+        )}
+      </div>
+    )}
+    
+    {/* Buttons */}
+    <div class="flex items-center justify-between pt-4 mt-auto border-t border-matrix-green/10">
+      {demo && (
+        <a 
+          href={demo}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center text-sm font-medium text-matrix-green hover:text-white group"
+        >
+          
+          
+            <path 
+              stroke-linecap="round" 
+              stroke-linejoin="round" 
+              stroke-width="2" 
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+            ></path>
+          </svg>
+        </a>
+      )}
+      
+      {github && (
+        <a 
+          href={github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center text-sm text-gray-400 hover:text-white transition-colors"
+          aria-label="View on GitHub"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.16 22 16.416 22 12c0-5.523-4.477-10-10-10z"></path>
+          </svg>
+          <span class="ml-1">Code</span>
+        </a>
+      )}
+    </div>
+  </div>
+</article>

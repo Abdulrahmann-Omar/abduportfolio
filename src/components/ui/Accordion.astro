@@ -1,0 +1,96 @@
+---
+---
+
+<div class={`space-y-4 ${Astro.props.className || ''}`}>
+  {Astro.props.items?.map((item, index) => (
+    <div 
+      class:list={[
+        'border border-matrix-green/20 rounded-lg overflow-hidden transition-all duration-300',
+        Astro.props.openIndex === index 
+          ? 'bg-matrix-light/30 border-matrix-green/50' 
+          : 'bg-matrix-light/10 hover:bg-matrix-light/20'
+      ]}
+    >
+      <button
+        class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none"
+        on:click={() => {
+          const event = new CustomEvent('toggle', { detail: index });
+          document.dispatchEvent(event);
+        }}
+        aria-expanded={Astro.props.openIndex === index}
+        aria-controls={`accordion-content-${index}`}
+      >
+        <h3 class="text-lg font-semibold text-white">{item.title}</h3>
+        <svg
+          class={`w-5 h-5 text-matrix-green transition-transform duration-300 ${
+            Astro.props.openIndex === index ? 'transform rotate-180' : ''
+          }`}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </button>
+      
+      <div
+        id={`accordion-content-${index}`}
+        class={`px-6 pb-4 transition-all duration-300 overflow-hidden ${
+          Astro.props.openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        }`}
+        aria-hidden={Astro.props.openIndex !== index}
+      >
+        <div class="pt-2">
+          {item.content}
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<script>
+  // Client-side script to handle accordion toggling
+  document.addEventListener('DOMContentLoaded', () => {
+    let openIndex = -1;
+    
+    document.addEventListener('toggle', (e) => {
+      const index = e.detail;
+      openIndex = openIndex === index ? -1 : index;
+      
+      // Update all accordion items
+      document.querySelectorAll('[aria-expanded]').forEach((el, i) => {
+        const isOpen = i === openIndex;
+        el.setAttribute('aria-expanded', isOpen);
+        
+        const content = document.getElementById(`accordion-content-${i}`);
+        if (content) {
+          content.setAttribute('aria-hidden', !isOpen);
+          content.classList.toggle('max-h-96', isOpen);
+          content.classList.toggle('opacity-100', isOpen);
+          content.classList.toggle('opacity-0', !isOpen);
+        }
+        
+        // Update arrow rotation
+        const arrow = el.querySelector('svg');
+        if (arrow) {
+          arrow.classList.toggle('transform', isOpen);
+          arrow.classList.toggle('rotate-180', isOpen);
+        }
+        
+        // Update background
+        const accordionItem = el.closest('div[class*="border"]');
+        if (accordionItem) {
+          accordionItem.classList.toggle('bg-matrix-light/30', isOpen);
+          accordionItem.classList.toggle('border-matrix-green/50', isOpen);
+          accordionItem.classList.toggle('bg-matrix-light/10', !isOpen);
+          accordionItem.classList.toggle('hover:bg-matrix-light/20', !isOpen);
+        }
+      });
+    });
+  });
+</script>
