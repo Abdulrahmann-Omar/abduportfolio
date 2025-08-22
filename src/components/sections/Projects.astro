@@ -1,6 +1,6 @@
 ---
 import { signal } from '@preact/signals';
-import ProjectCard from '../ui/ProjectCard.astro';
+import ProjectCard from '../ui/ProjectCard';
 
 // Projects from resume
 // Generate a beautiful SVG placeholder with a tech theme
@@ -103,17 +103,13 @@ const categories = [
   { id: 'cv', name: 'Computer Vision' }
 ];
 
-// ✅ Replace createSignal with signal
-const activeFilter = signal('all');
+const activeCategory = signal('all');
 
 const filteredProjects = () => {
-  if (activeFilter.value === 'all') return allProjects;
-  return allProjects.filter(project => project.category === activeFilter.value);
+  if (activeCategory.value === 'all') return allProjects;
+  return allProjects.filter(project => project.category === activeCategory.value);
 };
-
-const featuredProjects = allProjects.filter(project => project.featured);
 ---
-
 
 <section id="projects" class="py-20 bg-matrix-dark/20 relative overflow-hidden">
   <div class="container mx-auto px-6 relative z-10">
@@ -121,63 +117,35 @@ const featuredProjects = allProjects.filter(project => project.featured);
       <h2 class="text-4xl font-bold mb-4">
         <span class="gradient-text">Featured Projects</span>
       </h2>
-      <div class="w-24 h-1 bg-matrix-green mx-auto my-6"></div>
-      <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-        A selection of my recent work in AI, machine learning, and software development.
+      <p class="text-gray-400 max-w-2xl mx-auto">
+        A selection of my recent projects showcasing my skills and experience.
       </p>
     </div>
 
-    {/* Project Filter */}
     <div class="flex flex-wrap justify-center gap-4 mb-12">
       {categories.map(category => (
         <button
-          onClick={() => (activeFilter.value = category.id)}
-          class:list={[
-            'px-4 py-2 rounded-full text-sm font-medium transition-all duration-300',
-            activeFilter.value === category.id
-              ? 'bg-matrix-green text-matrix-dark'
-              : 'text-gray-300 hover:text-white hover:bg-matrix-light/10 border border-matrix-green/20'
-          ]}
+          onClick={() => activeCategory.value = category.id}
+          class={`px-6 py-2 rounded-full transition-all ${
+            activeCategory.value === category.id
+              ? 'bg-matrix-green text-matrix-dark font-medium'
+              : 'bg-matrix-dark/50 text-gray-300 hover:bg-matrix-green/20 hover:text-white'
+          }`}
         >
           {category.name}
         </button>
       ))}
     </div>
 
-    {/* Projects Grid */}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {filteredProjects().map(project => (
-        <ProjectCard project={project} client:load />
+        <ProjectCard 
+          client:load
+          project={project} 
+        />
       ))}
     </div>
-
-    {/* View More Button */}
-    <div class="text-center mt-16">
-      <a 
-        href="#" 
-        class="inline-flex items-center px-6 py-3 border border-matrix-green/30 text-matrix-green rounded-md hover:bg-matrix-green/10 transition-colors duration-300 group"
-      >
-        <span>View All Projects</span>
-        <svg 
-          class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path 
-            stroke-linecap="round" 
-            stroke-linejoin="round" 
-            stroke-width="2" 
-            d="M14 5l7 7m0 0l-7 7m7-7H3"
-          ></path>
-        </svg>
-      </a>
-    </div>
   </div>
-  
-  {/* Decorative elements */}
-  <div class="absolute top-0 right-0 w-64 h-64 bg-matrix-green/5 rounded-full filter blur-3xl opacity-20 -mr-32 -mt-32"></div>
-  <div class="absolute bottom-0 left-0 w-96 h-96 bg-indigo-500/5 rounded-full filter blur-3xl opacity-20 -ml-48 -mb-48"></div>
 </section>
 
 <style>

@@ -2,13 +2,8 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 
-// Check if we're in production mode
-const isProduction = process.env.NODE_ENV === 'production';
-
-// https://astro.build/config
+// Local development config - no base URL
 export default defineConfig({
-  site: isProduction ? 'https://abdulrahmann-omar.github.io' : 'http://localhost:3000',
-  base: isProduction ? '/abduportfolio/' : '/',
   integrations: [
     react(),
     tailwind({
@@ -26,13 +21,9 @@ export default defineConfig({
     },
   },
   vite: {
-    ssr: {
-      noExternal: ['@astrojs/mdx', 'framer-motion']
-    },
     optimizeDeps: {
       include: ['@headlessui/react', 'framer-motion'],
-      exclude: ['@resvg/resvg-js'],
-    },
-  },
-  output: 'static',
+      exclude: ['@resvg/resvg-js']
+    }
+  }
 });
