@@ -3,31 +3,60 @@ import Timeline from '../ui/Timeline.astro';
 
 const experiences = [
   {
-    role: 'AI Intern',
-    company: 'Optomatica',
-    period: 'Aug 2025 – Present',
+    role: 'AI Engineer',
+    company: 'BrightBrainsIT (Dubai, Remote)',
+    period: 'Aug 2026 – Present',
     description: [
-      'Evaluated a baseline Retrieval-Augmented Generation (RAG) system using Ragas, designing and curating tailored test datasets for more accurate benchmarking',
-      'Architected and implemented an advanced RAG system for activeQ Protest\'s RFP automation platform, boosting accuracy by 15%+ through optimized retrieval pipelines and query expansion'
+      'Building an AI-powered Digital Employee Experience (DEX) platform on Nexthink for a UAE government client, spanning four pillars: conversational AI assistant, playbook-driven automation engine, unified insights dashboard, and proactive anomaly detection',
+      'Built a natural-language analytics assistant that compiles user questions into guarded NXQL queries (schema-linked planning, AST, lint, execution), achieving 77% execution match on an internal benchmark with measured refusals for unanswerable queries',
+      'Designed a human-in-the-loop remote-action flow: the assistant proposes fixes from an admin-configured action catalog, and every write passes one audited gate with dry-run defaults, blast-radius caps, and post-run verification'
     ]
   },
   {
-    role: 'Data Science Intern',
-    company: 'SIGMA EMEA',
-    period: 'Aug 2025 – Present',
+    role: 'Co-Founder & CTO',
+    company: 'Everyside – Arabic-Native AI Marketing OS',
+    period: 'Jul 2025 – Present',
     description: [
-      'Designed and implemented a customer segmentation and traveler-focused recommendation system for a telecom operator with live tracking for accurate personalization',
-      'Delivered personalized offers and predictive insights that enhanced customer engagement and loyalty, leading a team of 5 to develop data-driven business solutions'
+      'Co-founded an Arabic-native AI Marketing OS for business owners, media buyers, and agencies in Egypt and Saudi Arabia: define your brand once, and the platform designs, writes, and launches on-brand campaigns in Arabic and English; nothing publishes without human approval',
+      'Architected and built the full production platform: FastAPI + Pydantic v2 backend with LLM-driven on-brand generation, Redis-backed background jobs, Supabase, and Paymob billing, deployed on GCP Cloud Run',
+      'Built ad-channel publishing integrations (Meta, TikTok, Snap) and a bilingual Next.js / React product UI with RTL-aware EN/AR i18n; re-architecting for multi-tenancy while driving the close of a funding round with a regional investor'
+    ]
+  },
+  {
+    role: 'AI Engineer (Part-time)',
+    company: 'Snippet',
+    period: 'Jan 2026 – Mar 2026',
+    description: [
+      'Architected a hybrid AI system combining deterministic guardrails with LLM-based generation for knowledge graph consistency, enabling semantic search across 20M+ documents',
+      'Designed conflict-resolution pipelines for multi-source knowledge ingestion using Neo4j, and built graph-based semantic search with context-aware retrieval'
+    ]
+  },
+  {
+    role: 'AI Engineer Intern',
+    company: 'Optomatica',
+    period: 'Aug 2025 – Oct 2025',
+    description: [
+      'Built advanced RAG architecture for ActiveQ.ai (an enterprise RFP automation platform) with query expansion, semantic chunking, and hybrid retrieval with LLM reranking, improving accuracy by +15%',
+      'Developed a RAG evaluation framework using Ragas for automated benchmarking of retrieval quality and factual consistency'
+    ]
+  },
+  {
+    role: 'Data Science Intern (Part-time)',
+    company: 'SIGMA EMEA',
+    period: 'Aug 2025 – Oct 2025',
+    description: [
+      'Built a customer segmentation and recommendation engine for a telecom operator processing 2M+ customer records',
+      'Led a team of 5 delivering a predictive analytics solution'
     ]
   },
   {
     role: 'Bachelor of Computer Science and AI',
     company: 'University of Science and Technology at Zewail City',
-    period: 'Sep 2022 – July 2026',
+    period: 'Sep 2022 – June 2026',
     description: [
-      'Relevant Coursework: Deep Learning, Data Mining, Algorithm Design, Software Engineering, RAG, NLP',
-      'Head of Multimedia Committee — IEEE Zewail City (Sep 2024 – Present)',
-      'Organizing Committee Member — IEEE Zewail City (Dec 2023 – Present)'
+      'Relevant Coursework: Deep Learning, NLP, Computer Vision, Data Mining, Algorithm Design, Explainable AI, Reinforcement Learning, MLOps, Big Data, AI Safety',
+      'Thesis: Multi-Agent Orchestration for Social Media Content Automation',
+      'Head of Multimedia Committee — IEEE Zewail City (Sep 2024 – May 2025)'
     ]
   }
 ];
@@ -55,7 +84,7 @@ const experiences = [
     
     <div class="mt-16 text-center">
       <a 
-        href="/ABDULRAHMAN OMAR Resume.pdf" 
+        href={`${import.meta.env.BASE_URL}ABDULRAHMAN-OMAR-Resume.pdf`}
         class="inline-flex items-center px-6 py-3 border border-matrix-green/30 text-matrix-green rounded-md hover:bg-matrix-green/10 transition-colors duration-300 group"
         download
       >
@@ -108,4 +137,5 @@ const experiences = [
   .timeline-item:nth-child(3) { animation-delay: 0.3s; }
   .timeline-item:nth-child(4) { animation-delay: 0.4s; }
   .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+  .timeline-item:nth-child(6) { animation-delay: 0.6s; }
 </style>

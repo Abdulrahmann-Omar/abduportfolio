@@ -35,6 +35,36 @@ const generateTechSVG = (seed, colors = ['#10B981', '#3B82F6', '#8B5CF6']) => {
 const allProjects = [
   {
     id: 1,
+    title: 'Everyside: Arabic-Native AI Marketing OS',
+    description: 'Co-founded and built end to end an AI platform that designs, writes, and launches on-brand marketing campaigns in Arabic and English, with human approval before anything publishes.',
+    tags: ['FastAPI', 'Next.js', 'Pydantic AI', 'Supabase', 'Redis', 'GCP Cloud Run', 'LLMs'],
+    github: '#',
+    demo: 'https://everyside.ai',
+    category: 'ai',
+    featured: true,
+    highlights: [
+      'Full production platform: FastAPI backend, LLM-driven generation, background jobs, billing',
+      'Ad-channel publishing integrations for Meta, TikTok, and Snap',
+      'Bilingual EN/AR product UI with RTL-aware i18n'
+    ]
+  },
+  {
+    id: 2,
+    title: 'Pulse: AI Multi-Agent Marketing Platform',
+    description: 'Led a team of 4 and architected a production-grade multi-agent AI platform for social-media marketing, orchestrating specialized autonomous agents over a FastAPI backend.',
+    tags: ['CrewAI', 'DSPy', 'PyTorch', 'vLLM', 'QLoRA', 'Supabase', 'Redis', 'Docker'],
+    github: 'https://github.com/pulse-mas/pulse-multi-agent-platform',
+    demo: '#',
+    category: 'ai',
+    featured: true,
+    highlights: [
+      'Fine-tuned an 8B LLM via knowledge distillation and QLoRA on A100 GPUs, self-hosted with vLLM',
+      'Fault-tolerant LLM gateway with multi-provider failover and per-agent model policies',
+      'RAG layer on Supabase pgvector grounding agents in brand and market context'
+    ]
+  },
+  {
+    id: 3,
     title: 'NeuraViva: News-Driven Multi-Stock Forecasting',
     description: 'Developed an end-to-end framework that integrates financial news sentiment analysis with multi-stock time series forecasting, achieving MSE of 0.02.',
     tags: ['Python', 'TensorFlow', 'NLP', 'Time Series', 'SHAP', 'LIME', 'XGBoost'],
@@ -49,7 +79,7 @@ const allProjects = [
     ]
   },
   {
-    id: 2,
+    id: 4,
     title: 'Underwater Acoustic Target Detection',
     description: 'Engineered a dual deep learning framework combining CNN-based object detection and Siamese networks for underwater target recognition.',
     tags: ['Python', 'PyTorch', 'Computer Vision', 'Transfer Learning', 'Gradio'],
@@ -64,22 +94,7 @@ const allProjects = [
     ]
   },
   {
-    id: 3,
-    title: 'Gemini-Powered RAG Pipeline',
-    description: 'Developed a modular RAG pipeline using LangChain, ChromaDB, and Google Gemini for financial document analysis.',
-    tags: ['Python', 'LangChain', 'ChromaDB', 'Google Gemini', 'RAG', 'NLP'],
-    github: 'https://github.com/Abdulrahmann-Omar/PDF-RAG-with-Gemini',
-    demo: '#',
-    category: 'ai',
-    featured: true,
-    highlights: [
-      'Enabled semantic retrieval from financial documents',
-      'Integrated PDF parsing and vector search',
-      'Implemented secure API handling'
-    ]
-  },
-  {
-    id: 4,
+    id: 5,
     title: 'Fraud Detection System',
     description: 'Trained multiple models for fraud detection with up to 98% precision on highly imbalanced IEEE-CIS dataset.',
     tags: ['Python', 'Scikit-learn', 'SMOTE', 'XGBoost', 'Neural Networks', 'SHAP'],
