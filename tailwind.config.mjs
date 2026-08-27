@@ -24,9 +24,9 @@ export default {
         'line-strong': 'rgba(255, 255, 255, 0.16)',
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['Fraunces', 'Georgia', 'serif'],
-        mono: ['"JetBrains Mono"', '"Fira Code"', 'ui-monospace', 'monospace'],
+        sans: ['Geist', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['Geist', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['"Geist Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       maxWidth: {
         content: '68rem',
