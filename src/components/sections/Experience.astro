@@ -1,141 +1,112 @@
 ---
-import Timeline from '../ui/Timeline.astro';
-
 const experiences = [
   {
     role: 'AI Engineer',
-    company: 'BrightBrainsIT (Dubai, Remote)',
-    period: 'Aug 2026 – Present',
+    company: 'BrightBrainsIT',
+    companyUrl: 'https://brightbrainsit.com/',
+    location: 'Dubai, UAE · Remote',
+    period: 'Aug 2026 — Present',
     description: [
-      'Building an AI-powered Digital Employee Experience (DEX) platform on Nexthink for a UAE government client, spanning four pillars: conversational AI assistant, playbook-driven automation engine, unified insights dashboard, and proactive anomaly detection',
-      'Built a natural-language analytics assistant that compiles user questions into guarded NXQL queries (schema-linked planning, AST, lint, execution), achieving 77% execution match on an internal benchmark with measured refusals for unanswerable queries',
-      'Designed a human-in-the-loop remote-action flow: the assistant proposes fixes from an admin-configured action catalog, and every write passes one audited gate with dry-run defaults, blast-radius caps, and post-run verification'
-    ]
+      'Building an AI-powered Digital Employee Experience (DEX) platform on Nexthink for a UAE government client, spanning four pillars: conversational AI assistant, playbook-driven automation engine, unified insights dashboard, and proactive anomaly detection.',
+      'Built a natural-language analytics assistant that compiles questions into guarded NXQL queries — schema-linked planning, AST, lint, execution — achieving 77% execution match on an internal benchmark, with measured refusals for unanswerable queries.',
+      'Designed a human-in-the-loop remote-action flow: the assistant proposes fixes from an admin-configured action catalog; every write passes one audited gate with dry-run defaults, blast-radius caps, and post-run verification.',
+    ],
   },
   {
     role: 'Co-Founder & CTO',
-    company: 'Everyside – Arabic-Native AI Marketing OS',
-    period: 'Jul 2025 – Present',
+    company: 'Everyside',
+    companyUrl: 'https://everyside.ai',
+    location: 'Egypt & Saudi Arabia · Remote',
+    period: 'Jul 2025 — Present',
     description: [
-      'Co-founded an Arabic-native AI Marketing OS for business owners, media buyers, and agencies in Egypt and Saudi Arabia: define your brand once, and the platform designs, writes, and launches on-brand campaigns in Arabic and English; nothing publishes without human approval',
-      'Architected and built the full production platform: FastAPI + Pydantic v2 backend with LLM-driven on-brand generation, Redis-backed background jobs, Supabase, and Paymob billing, deployed on GCP Cloud Run',
-      'Built ad-channel publishing integrations (Meta, TikTok, Snap) and a bilingual Next.js / React product UI with RTL-aware EN/AR i18n; re-architecting for multi-tenancy while driving the close of a funding round with a regional investor'
-    ]
+      'Co-founded an Arabic-native AI Marketing OS for business owners, media buyers, and agencies: define your brand once, and the platform designs, writes, and launches on-brand campaigns in Arabic and English; nothing publishes without human approval.',
+      'Architected and built the full production platform: FastAPI + Pydantic v2 backend with LLM-driven generation, Redis-backed background jobs, Supabase, and Paymob billing on GCP Cloud Run.',
+      'Re-architecting for multi-tenancy so agencies can run multiple client brands under one account, while driving the close of a funding round with a regional investor.',
+    ],
   },
   {
-    role: 'AI Engineer (Part-time)',
+    role: 'AI Engineer',
     company: 'Snippet',
-    period: 'Jan 2026 – Mar 2026',
+    companyUrl: 'https://snippet.so',
+    location: 'Remote · Part-time',
+    period: 'Jan 2026 — Mar 2026',
     description: [
-      'Architected a hybrid AI system combining deterministic guardrails with LLM-based generation for knowledge graph consistency, enabling semantic search across 20M+ documents',
-      'Designed conflict-resolution pipelines for multi-source knowledge ingestion using Neo4j, and built graph-based semantic search with context-aware retrieval'
-    ]
+      'Architected a hybrid AI system combining deterministic guardrails with LLM-based generation for knowledge-graph consistency, enabling semantic search across 20M+ documents.',
+      'Designed conflict-resolution pipelines for multi-source knowledge ingestion with Neo4j, and built graph-based semantic search with context-aware retrieval.',
+    ],
   },
   {
     role: 'AI Engineer Intern',
     company: 'Optomatica',
-    period: 'Aug 2025 – Oct 2025',
+    companyUrl: 'https://optomatica.com',
+    location: 'Cairo, Egypt',
+    period: 'Aug 2025 — Oct 2025',
     description: [
-      'Built advanced RAG architecture for ActiveQ.ai (an enterprise RFP automation platform) with query expansion, semantic chunking, and hybrid retrieval with LLM reranking, improving accuracy by +15%',
-      'Developed a RAG evaluation framework using Ragas for automated benchmarking of retrieval quality and factual consistency'
-    ]
+      'Built advanced RAG architecture for ActiveQ.ai, an enterprise RFP automation platform: query expansion, semantic chunking, and hybrid retrieval with LLM reranking, improving accuracy by 15%.',
+      'Developed a RAG evaluation framework using Ragas for automated benchmarking of retrieval quality and factual consistency.',
+    ],
   },
   {
-    role: 'Data Science Intern (Part-time)',
-    company: 'SIGMA EMEA',
-    period: 'Aug 2025 – Oct 2025',
+    role: 'Data Science Intern',
+    company: 'Sigma EMEA',
+    companyUrl: 'https://sigma-emea.com',
+    location: 'Remote · Part-time',
+    period: 'Aug 2025 — Oct 2025',
     description: [
-      'Built a customer segmentation and recommendation engine for a telecom operator processing 2M+ customer records',
-      'Led a team of 5 delivering a predictive analytics solution'
-    ]
+      'Built a customer segmentation and recommendation engine for a telecom operator processing 2M+ customer records; led a team of 5 delivering the predictive analytics solution.',
+    ],
   },
   {
-    role: 'Bachelor of Computer Science and AI',
-    company: 'University of Science and Technology at Zewail City',
-    period: 'Sep 2022 – June 2026',
+    role: 'B.Sc. Computer Science & AI',
+    company: 'Zewail City of Science and Technology',
+    companyUrl: 'https://www.zewailcity.edu.eg',
+    location: 'Cairo, Egypt',
+    period: 'Sep 2022 — Jun 2026',
     description: [
-      'Relevant Coursework: Deep Learning, NLP, Computer Vision, Data Mining, Algorithm Design, Explainable AI, Reinforcement Learning, MLOps, Big Data, AI Safety',
-      'Thesis: Multi-Agent Orchestration for Social Media Content Automation',
-      'Head of Multimedia Committee — IEEE Zewail City (Sep 2024 – May 2025)'
-    ]
-  }
+      'Thesis: Multi-Agent Orchestration for Social Media Content Automation.',
+      'Coursework across deep learning, NLP, computer vision, explainable AI, reinforcement learning, MLOps, big data, and AI safety. Head of Multimedia Committee, IEEE Zewail City.',
+    ],
+  },
 ];
 ---
 
-<section id="experience" class="py-20 bg-matrix-dark/30 relative overflow-hidden">
-  <div class="container mx-auto px-6 relative z-10">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold mb-4">
-        <span class="gradient-text">Work Experience</span>
-      </h2>
-      <div class="w-24 h-1 bg-matrix-green mx-auto my-6"></div>
-      <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-        My professional journey and the roles that have shaped my career in technology and AI.
-      </p>
-    </div>
+<section id="experience" class="border-b border-line py-20 md:py-28">
+  <div class="mx-auto max-w-content px-6">
+    <p class="kicker mb-3" data-reveal>Experience</p>
+    <h2 class="font-display text-3xl font-semibold tracking-tight text-ink md:text-4xl" data-reveal>
+      Where I've worked
+    </h2>
 
-    <div class="relative max-w-5xl mx-auto">
-      <Timeline items={experiences} client:load />
-      
-      {/* Decorative elements */}
-      <div class="absolute top-0 -left-20 w-64 h-64 bg-matrix-green/5 rounded-full filter blur-3xl opacity-30 -z-10"></div>
-      <div class="absolute bottom-0 -right-20 w-96 h-96 bg-indigo-500/5 rounded-full filter blur-3xl opacity-30 -z-10"></div>
-    </div>
-    
-    <div class="mt-16 text-center">
-      <a 
-        href={`${import.meta.env.BASE_URL}ABDULRAHMAN-OMAR-Resume.pdf`}
-        class="inline-flex items-center px-6 py-3 border border-matrix-green/30 text-matrix-green rounded-md hover:bg-matrix-green/10 transition-colors duration-300 group"
-        download
-      >
-        <span>Download Full Resume</span>
-        <svg 
-          class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path 
-            stroke-linecap="round" 
-            stroke-linejoin="round" 
-            stroke-width="2" 
-            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-          ></path>
-        </svg>
-      </a>
-    </div>
+    <ol class="mt-12">
+      {experiences.map((item) => (
+        <li class="grid gap-2 border-l border-line py-8 pl-6 first:pt-0 md:grid-cols-[200px_1fr] md:gap-10 md:pl-10" data-reveal>
+          <div class="relative">
+            <span class="absolute -left-[29px] top-1.5 h-2 w-2 rounded-full bg-accent md:-left-[45px]" aria-hidden="true"></span>
+            <p class="font-mono text-sm text-ink-mute">{item.period}</p>
+            <p class="mt-1 text-sm text-ink-mute md:mt-2">{item.location}</p>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-ink">
+              {item.role}
+              <span class="font-normal text-ink-soft">
+                {' · '}
+                <a href={item.companyUrl} class="transition-colors hover:text-accent" target="_blank" rel="noopener noreferrer">
+                  {item.company}
+                </a>
+              </span>
+            </h3>
+            <ul class="mt-3 space-y-2.5 text-[15px] leading-relaxed text-ink-soft">
+              {item.description.map((line) => (
+                <li class="flex gap-2.5">
+                  <span class="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-white/25" aria-hidden="true"></span>
+                  <span>{line}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </li>
+      ))}
+    </ol>
   </div>
 </section>
-
-<style>
-  .gradient-text {
-    background: linear-gradient(135deg, #0f0 0%, #38bdf8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
-  /* Animation for timeline items */
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .timeline-item {
-    animation: fadeInUp 0.6s ease-out forwards;
-    opacity: 0;
-  }
-  
-  .timeline-item:nth-child(1) { animation-delay: 0.1s; }
-  .timeline-item:nth-child(2) { animation-delay: 0.2s; }
-  .timeline-item:nth-child(3) { animation-delay: 0.3s; }
-  .timeline-item:nth-child(4) { animation-delay: 0.4s; }
-  .timeline-item:nth-child(5) { animation-delay: 0.5s; }
-  .timeline-item:nth-child(6) { animation-delay: 0.6s; }
-</style>

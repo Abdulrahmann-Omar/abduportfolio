@@ -1,186 +1,83 @@
 ---
-import Button from '../ui/Button.astro';
+const base = import.meta.env.BASE_URL;
+
+const stats = [
+  { value: '77%', label: 'execution match, NL-to-NXQL analytics assistant' },
+  { value: '20M+', label: 'documents searchable via knowledge-graph RAG' },
+  { value: '8B', label: 'parameter LLM fine-tuned (QLoRA) and self-hosted' },
+  { value: '1st', label: 'author, XAI faithfulness benchmark (under review)' },
+];
 ---
 
-<section id="home" class="min-h-screen flex items-center relative overflow-hidden">
-  <!-- Matrix Background -->
-  <div class="fixed inset-0 z-0">
-    <canvas 
-      id="matrix-canvas" 
-      class="w-full h-full"
-      aria-hidden="true"
-    ></canvas>
-  </div>
-  
-  <div class="container mx-auto px-6 relative z-10">
-    <div class="max-w-4xl mx-auto text-center">
-      <div class="inline-block px-4 py-2 mb-6 bg-matrix-green/10 border border-matrix-green/30 rounded-full text-matrix-green text-sm font-mono">
-        Welcome to my digital realm
-      </div>
-      
-      <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-        <span class="text-white">Hi, I'm</span>{' '}
-        <span class="text-matrix-green glow">Abdulrahman Omar</span>
-      </h1>
-      
-      <div class="h-16 md:h-20 mb-8">
-        <div class="typewriter text-2xl md:text-4xl font-mono text-gray-300">
-          <span class="text-matrix-green">$</span> I build intelligent systems that solve real-world problems
-        </div>
-      </div>
-      
-      <p class="text-lg md:text-xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
-        AI Engineer & Startup CTO building production-grade LLM applications, RAG systems, and multi-agent platforms.
-        Currently pushing the boundaries of what's possible with machine learning and artificial intelligence.
-      </p>
-      
-      <div class="flex flex-wrap justify-center gap-4">
-        <Button href="#projects" variant="primary" class="group">
-          <span>View My Work</span>
-          <svg
-            class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M14 5l7 7m0 0l-7 7m7-7H3"
-            ></path>
-          </svg>
-        </Button>
-        
-        <Button href="#contact" variant="outline">
-          Get In Touch
-        </Button>
-      </div>
-    </div>
-  </div>
-  
-  <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-    <a
-      href="#about"
-      class="text-matrix-green hover:text-white transition-colors duration-300"
-      aria-label="Scroll down"
+<section id="home" class="border-b border-line pt-32 pb-20 md:pt-44 md:pb-28">
+  <div class="mx-auto max-w-content px-6">
+    <p class="kicker mb-6" data-reveal>AI Engineer &amp; Co-Founder · Cairo / Dubai (Remote)</p>
+
+    <h1
+      class="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-ink md:text-7xl"
+      data-reveal
     >
-      <svg
-        class="w-8 h-8"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
+      Abdulrahman Omar
+    </h1>
+
+    <p class="mt-8 max-w-2xl text-xl leading-relaxed text-ink-soft md:text-2xl" data-reveal>
+      I build production LLM systems — from fine-tuned models to the platforms that ship them.
+    </p>
+
+    <div class="mt-8 max-w-2xl space-y-3 text-ink-soft" data-reveal>
+      <p>
+        <span class="font-medium text-ink">AI Engineer at BrightBrainsIT</span> — building an AI-powered digital
+        employee experience platform for a UAE government client.
+      </p>
+      <p>
+        <span class="font-medium text-ink">Co-Founder &amp; CTO of
+          <a href="https://everyside.ai" class="text-accent underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">Everyside</a></span>
+        — an Arabic-native AI marketing OS operating in Egypt and Saudi Arabia.
+      </p>
+    </div>
+
+    <div class="mt-10 flex flex-wrap items-center gap-4" data-reveal>
+      <a
+        href="mailto:abdu.omar.muhammad@gmail.com"
+        class="rounded-md bg-accent px-5 py-2.5 font-medium text-canvas transition-colors hover:bg-accent-dim"
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M19 14l-7 7m0 0l-7-7m7 7V3"
-        ></path>
-      </svg>
-    </a>
+        Get in touch
+      </a>
+      <a
+        href={`${base}ABDULRAHMAN-OMAR-Resume.pdf`}
+        download="Abdulrahman-Omar-Resume.pdf"
+        class="group inline-flex items-center gap-2 rounded-md border border-line-strong px-5 py-2.5 text-ink transition-colors hover:border-accent hover:text-accent"
+      >
+        <span>Download resume</span>
+        <svg class="h-4 w-4 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M5 20h14" />
+        </svg>
+      </a>
+
+      <span class="mx-1 hidden h-6 w-px bg-white/10 sm:block" aria-hidden="true"></span>
+
+      <a href="https://github.com/Abdulrahmann-Omar" class="link-quiet" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+        </svg>
+      </a>
+      <a href="https://linkedin.com/in/abdulrahman-omar-87121b200" class="link-quiet" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+        </svg>
+      </a>
+    </div>
+
+    <dl class="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-line bg-white/[0.04] lg:grid-cols-4" data-reveal>
+      {stats.map((stat) => (
+        <div class="bg-canvas p-6">
+          <dt class="sr-only">{stat.label}</dt>
+          <dd>
+            <span class="font-display text-3xl font-semibold text-ink md:text-4xl">{stat.value}</span>
+            <span class="mt-2 block text-sm leading-snug text-ink-mute" aria-hidden="true">{stat.label}</span>
+          </dd>
+        </div>
+      ))}
+    </dl>
   </div>
 </section>
-
-<style>
-  .typewriter {
-    border-right: 2px solid #0f0;
-    white-space: nowrap;
-    overflow: hidden;
-    display: inline-block;
-    animation: 
-      blink-caret 0.75s step-end infinite,
-      typing 3.5s steps(40, end);
-  }
-
-  @keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-  }
-
-  @keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: #0f0; }
-  }
-  
-  #matrix-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw !important;
-    height: 100vh !important;
-  }
-</style>
-
-<script>
-class MatrixEffect {
-  constructor(canvasId) {
-    this.canvas = document.getElementById(canvasId);
-    if (!this.canvas) return;
-    
-    this.ctx = this.canvas.getContext('2d');
-    this.characters = '01';
-    this.fontSize = 14;
-    this.drops = [];
-    this.animationId = null;
-
-    this.resizeHandler = () => this.init();
-    window.addEventListener('resize', this.resizeHandler);
-
-    this.init();
-  }
-
-  init() {
-    if (!this.canvas || !this.ctx) return;
-    
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
-    this.columns = Math.floor(this.canvas.width / this.fontSize);
-    this.drops = Array(this.columns).fill(1);
-
-    if (!this.animationId) this.animate();
-  }
-
-  draw() {
-    if (!this.ctx) return;
-    this.ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-    
-    this.ctx.fillStyle = '#0f0';
-    this.ctx.font = `${this.fontSize}px 'Fira Code', monospace`;
-
-    for (let i = 0; i < this.drops.length; i++) {
-      const text = this.characters.charAt(Math.floor(Math.random() * this.characters.length));
-      const x = i * this.fontSize;
-      const y = this.drops[i] * this.fontSize;
-      this.ctx.fillText(text, x, y);
-
-      if (y > this.canvas.height && Math.random() > 0.975) {
-        this.drops[i] = 0;
-      }
-      this.drops[i]++;
-    }
-  }
-
-  animate() {
-    this.draw();
-    this.animationId = requestAnimationFrame(() => this.animate());
-  }
-
-  destroy() {
-    cancelAnimationFrame(this.animationId);
-    window.removeEventListener('resize', this.resizeHandler);
-  }
-}
-
-document.addEventListener('astro:page-load', () => {
-  const effect = new MatrixEffect('matrix-canvas');
-  window.matrixEffect = effect;
-});
-
-window.addEventListener('beforeunload', () => {
-  if (window.matrixEffect) window.matrixEffect.destroy();
-});
-</script>

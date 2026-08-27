@@ -1,191 +1,228 @@
 ---
-import { signal } from '@preact/signals';
-import ProjectCard from '../ui/ProjectCard';
+const base = import.meta.env.BASE_URL;
 
-// Projects from resume
-// Generate a beautiful SVG placeholder with a tech theme
-const generateTechSVG = (seed, colors = ['#10B981', '#3B82F6', '#8B5CF6']) => {
-  const primaryColor = colors[seed % colors.length];
-  const secondaryColor = colors[(seed + 1) % colors.length];
-  
-  return `
-    <svg width="100%" height="100%" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="gradient${seed}" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="${primaryColor}" stop-opacity="0.8" />
-          <stop offset="100%" stop-color="${secondaryColor}" stop-opacity="0.6" />
-        </linearGradient>
-        <pattern id="grid${seed}" width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="${primaryColor}" stroke-width="0.5" opacity="0.3" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="#0f172a" />
-      <rect width="100%" height="100%" fill="url(#grid${seed})" opacity="0.3" />
-      <circle cx="${50 + (seed * 37) % 200}" cy="${100 + (seed * 23) % 100}" r="30" fill="url(#gradient${seed})" filter="blur(20px)" />
-      <circle cx="${300 - (seed * 29) % 200}" cy="${200 - (seed * 17) % 100}" r="25" fill="url(#gradient${seed})" filter="blur(15px)" />
-      <path d="M0,150 Q100,${100 + seed * 5} 200,${150 + seed * 3} T400,150" 
-            stroke="url(#gradient${seed})" 
-            stroke-width="2" 
-            fill="none" 
-            stroke-dasharray="5,5" />
-    </svg>
-  `;
-};
-
-const allProjects = [
+const projects = [
   {
-    id: 1,
-    title: 'Everyside: Arabic-Native AI Marketing OS',
-    description: 'Co-founded and built end to end an AI platform that designs, writes, and launches on-brand marketing campaigns in Arabic and English, with human approval before anything publishes.',
-    tags: ['FastAPI', 'Next.js', 'Pydantic AI', 'Supabase', 'Redis', 'GCP Cloud Run', 'LLMs'],
-    github: '#',
-    demo: 'https://everyside.ai',
-    category: 'ai',
-    featured: true,
+    title: 'Everyside',
+    subtitle: 'Arabic-native AI Marketing OS',
+    role: 'Co-Founder & CTO · 2025–present',
+    description:
+      'Define your brand once; the platform designs, writes, and launches on-brand campaigns in Arabic and English. Nothing publishes without human approval.',
     highlights: [
-      'Full production platform: FastAPI backend, LLM-driven generation, background jobs, billing',
-      'Ad-channel publishing integrations for Meta, TikTok, and Snap',
-      'Bilingual EN/AR product UI with RTL-aware i18n'
-    ]
+      'FastAPI + Pydantic v2 backend, LLM generation, Arq background jobs, Paymob billing, GCP Cloud Run',
+      'Ad-channel publishing for Meta, TikTok, and Snap; bilingual RTL-aware EN/AR product UI',
+    ],
+    tags: ['FastAPI', 'Next.js', 'Pydantic AI', 'Supabase', 'Redis', 'GCP'],
+    links: [{ label: 'everyside.ai', href: 'https://everyside.ai', external: true }],
+    media: 'video',
   },
   {
-    id: 2,
-    title: 'Pulse: AI Multi-Agent Marketing Platform',
-    description: 'Led a team of 4 and architected a production-grade multi-agent AI platform for social-media marketing, orchestrating specialized autonomous agents over a FastAPI backend.',
-    tags: ['CrewAI', 'DSPy', 'PyTorch', 'vLLM', 'QLoRA', 'Supabase', 'Redis', 'Docker'],
-    github: 'https://github.com/pulse-mas/pulse-multi-agent-platform',
-    demo: '#',
-    category: 'ai',
-    featured: true,
+    title: 'Pulse',
+    subtitle: 'Multi-agent marketing platform',
+    role: 'Creator & Lead Engineer · Team of 4 · 2025',
+    description:
+      'Production-grade multi-agent platform for social-media marketing: specialized autonomous agents for content, strategy, analytics, and research over a FastAPI backend.',
     highlights: [
-      'Fine-tuned an 8B LLM via knowledge distillation and QLoRA on A100 GPUs, self-hosted with vLLM',
+      'Fine-tuned an 8B LLM via knowledge distillation + QLoRA on A100s; self-hosted with vLLM and Modal',
       'Fault-tolerant LLM gateway with multi-provider failover and per-agent model policies',
-      'RAG layer on Supabase pgvector grounding agents in brand and market context'
-    ]
+    ],
+    tags: ['CrewAI', 'DSPy', 'vLLM', 'QLoRA', 'pgvector', 'Docker'],
+    links: [{ label: 'GitHub', href: 'https://github.com/pulse-mas/pulse-multi-agent-platform', external: true }],
+    media: 'agents',
   },
   {
-    id: 3,
-    title: 'NeuraViva: News-Driven Multi-Stock Forecasting',
-    description: 'Developed an end-to-end framework that integrates financial news sentiment analysis with multi-stock time series forecasting, achieving MSE of 0.02.',
-    tags: ['Python', 'TensorFlow', 'NLP', 'Time Series', 'SHAP', 'LIME', 'XGBoost'],
-    github: 'https://github.com/Abdulrahmann-Omar/FinSentImpact-A-News-Driven-Multi-Stock-Forecasting-Framework',
-    demo: '#',
-    category: 'ai',
-    featured: true,
+    title: 'NeuraViva',
+    subtitle: 'News-driven multi-stock forecasting',
+    role: 'Solo project · 2024',
+    description:
+      'End-to-end framework integrating financial-news sentiment with multi-stock time-series forecasting, reaching 0.02 MSE with SHAP/LIME explainability throughout.',
     highlights: [
-      'Implemented SVM, XGBoost, Random Forest, and Linear Regression models',
-      'Utilized SHAP and LIME for model explainability',
-      'Integrated news sentiment analysis with stock price prediction'
-    ]
+      'SVM, XGBoost, Random Forest, and linear baselines benchmarked on a shared harness',
+      'Sentiment features fused with price history; attributions audited per prediction',
+    ],
+    tags: ['PyTorch', 'XGBoost', 'NLP', 'SHAP', 'Time Series'],
+    links: [
+      {
+        label: 'GitHub',
+        href: 'https://github.com/Abdulrahmann-Omar/FinSentImpact-A-News-Driven-Multi-Stock-Forecasting-Framework',
+        external: true,
+      },
+    ],
+    media: 'forecast',
   },
   {
-    id: 4,
-    title: 'Underwater Acoustic Target Detection',
-    description: 'Engineered a dual deep learning framework combining CNN-based object detection and Siamese networks for underwater target recognition.',
-    tags: ['Python', 'PyTorch', 'Computer Vision', 'Transfer Learning', 'Gradio'],
-    github: '#',
-    demo: '#',
-    category: 'ai',
-    featured: true,
+    title: 'Fraud Detection',
+    subtitle: 'Imbalanced-data fraud models',
+    role: 'Solo project · 2024',
+    description:
+      'Up to 98% precision on the IEEE-CIS dataset with a 0.17% fraud rate; false negatives cut by 18% against the baseline, with SHAP reporting for every model.',
     highlights: [
-      'Achieved superior classification accuracy with MobileNetV2',
-      'Deployed scalable inference system via Gradio',
-      'Addressed challenges in marine surveillance and underwater robotics'
-    ]
+      'SMOTE, class-weighted XGBoost, and neural baselines compared honestly on the same splits',
+      'Decision thresholds tuned to the asymmetric cost of a missed fraud',
+    ],
+    tags: ['Scikit-learn', 'XGBoost', 'SMOTE', 'SHAP'],
+    links: [
+      { label: 'GitHub', href: 'https://github.com/Abdulrahmann-Omar/Fraud_Detection_With_Various_Models', external: true },
+    ],
+    media: 'anomaly',
   },
-  {
-    id: 5,
-    title: 'Fraud Detection System',
-    description: 'Trained multiple models for fraud detection with up to 98% precision on highly imbalanced IEEE-CIS dataset.',
-    tags: ['Python', 'Scikit-learn', 'SMOTE', 'XGBoost', 'Neural Networks', 'SHAP'],
-    github: 'https://github.com/Abdulrahmann-Omar/Fraud_Detection_With_Various_Models',
-    demo: '#',
-    category: 'ml',
-    featured: true,
-    highlights: [
-      'Tackled class imbalance (0.17% fraud rate)',
-      'Reduced false negatives by 18%',
-      'Delivered SHAP visualizations and insights'
-    ]
-  }
 ];
-
-const categories = [
-  { id: 'all', name: 'All Projects' },
-  { id: 'ai', name: 'AI/ML' },
-  { id: 'ml', name: 'Machine Learning' },
-  { id: 'nlp', name: 'NLP' },
-  { id: 'cv', name: 'Computer Vision' }
-];
-
-const activeCategory = signal('all');
-
-const filteredProjects = () => {
-  if (activeCategory.value === 'all') return allProjects;
-  return allProjects.filter(project => project.category === activeCategory.value);
-};
 ---
 
-<section id="projects" class="py-20 bg-matrix-dark/20 relative overflow-hidden">
-  <div class="container mx-auto px-6 relative z-10">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold mb-4">
-        <span class="gradient-text">Featured Projects</span>
-      </h2>
-      <p class="text-gray-400 max-w-2xl mx-auto">
-        A selection of my recent projects showcasing my skills and experience.
-      </p>
-    </div>
+<section id="work" class="border-b border-line py-20 md:py-28">
+  <div class="mx-auto max-w-content px-6">
+    <p class="kicker mb-3" data-reveal>Selected work</p>
+    <h2 class="font-display text-3xl font-semibold tracking-tight text-ink md:text-4xl" data-reveal>
+      Things I've built and shipped
+    </h2>
 
-    <div class="flex flex-wrap justify-center gap-4 mb-12">
-      {categories.map(category => (
-        <button
-          onClick={() => activeCategory.value = category.id}
-          class={`px-6 py-2 rounded-full transition-all ${
-            activeCategory.value === category.id
-              ? 'bg-matrix-green text-matrix-dark font-medium'
-              : 'bg-matrix-dark/50 text-gray-300 hover:bg-matrix-green/20 hover:text-white'
-          }`}
+    <div class="mt-12 grid gap-6 md:grid-cols-2">
+      {projects.map((project) => (
+        <article
+          class="group flex flex-col overflow-hidden rounded-lg border border-line bg-surface transition-colors duration-300 hover:border-line-strong"
+          data-reveal
         >
-          {category.name}
-        </button>
-      ))}
-    </div>
+          <div class="relative aspect-[16/9] overflow-hidden border-b border-line bg-canvas">
+            {project.media === 'video' ? (
+              <video
+                class="h-full w-full object-cover"
+                src={`${base}media/everyside-tour.mp4`}
+                poster={`${base}media/everyside-poster.jpg`}
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-label="Everyside product tour"
+              />
+            ) : (
+              <svg class="h-full w-full" viewBox="0 0 640 360" role="img" aria-label={`${project.title} illustration`} preserveAspectRatio="xMidYMid slice">
+                <rect width="640" height="360" fill="#0d0e11" />
+                <g stroke="rgba(255,255,255,0.05)">
+                  {Array.from({ length: 15 }, (_, i) => (
+                    <line x1={i * 46} y1="0" x2={i * 46} y2="360" />
+                  ))}
+                  {Array.from({ length: 9 }, (_, i) => (
+                    <line x1="0" y1={i * 46} x2="640" y2={i * 46} />
+                  ))}
+                </g>
+                {project.media === 'agents' && (
+                  <g>
+                    <g stroke="rgba(139,147,255,0.35)" stroke-width="1.2">
+                      <line x1="320" y1="180" x2="180" y2="100" />
+                      <line x1="320" y1="180" x2="470" y2="90" />
+                      <line x1="320" y1="180" x2="150" y2="260" />
+                      <line x1="320" y1="180" x2="480" y2="270" />
+                      <line x1="180" y1="100" x2="470" y2="90" />
+                      <line x1="150" y1="260" x2="480" y2="270" />
+                    </g>
+                    <circle cx="320" cy="180" r="14" fill="#8b93ff" />
+                    <circle cx="180" cy="100" r="8" fill="none" stroke="#8b93ff" stroke-width="2" />
+                    <circle cx="470" cy="90" r="8" fill="none" stroke="#8b93ff" stroke-width="2" />
+                    <circle cx="150" cy="260" r="8" fill="none" stroke="#8b93ff" stroke-width="2" />
+                    <circle cx="480" cy="270" r="8" fill="none" stroke="#8b93ff" stroke-width="2" />
+                    <circle cx="320" cy="180" r="28" fill="none" stroke="rgba(139,147,255,0.25)" stroke-width="1" />
+                  </g>
+                )}
+                {project.media === 'forecast' && (
+                  <g>
+                    <polyline
+                      points="60,270 140,240 220,255 300,190 380,205 460,140 540,120 590,90"
+                      fill="none"
+                      stroke="#8b93ff"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <polyline
+                      points="60,290 140,285 220,300 300,250 380,265 460,225 540,215 590,190"
+                      fill="none"
+                      stroke="rgba(255,255,255,0.25)"
+                      stroke-width="1.5"
+                      stroke-dasharray="4 5"
+                    />
+                    <g fill="#8b93ff">
+                      <circle cx="300" cy="190" r="4" />
+                      <circle cx="460" cy="140" r="4" />
+                      <circle cx="590" cy="90" r="4" />
+                    </g>
+                  </g>
+                )}
+                {project.media === 'anomaly' && (
+                  <g>
+                    <g fill="rgba(255,255,255,0.28)">
+                      {[
+                        [95, 250], [150, 225], [205, 265], [250, 205], [305, 245],
+                        [355, 215], [415, 255], [465, 230], [520, 260], [560, 235],
+                        [130, 285], [280, 280], [390, 285], [490, 290], [230, 235],
+                      ].map(([x, y]) => (
+                        <circle cx={x} cy={y} r="5" />
+                      ))}
+                    </g>
+                    <circle cx="430" cy="105" r="7" fill="#8b93ff" />
+                    <circle cx="430" cy="105" r="18" fill="none" stroke="rgba(139,147,255,0.5)" stroke-width="1.5" />
+                    <circle cx="430" cy="105" r="32" fill="none" stroke="rgba(139,147,255,0.2)" stroke-width="1" />
+                  </g>
+                )}
+              </svg>
+            )}
+          </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {filteredProjects().map(project => (
-        <ProjectCard 
-          client:load
-          project={project} 
-        />
+          <div class="flex flex-1 flex-col p-6">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="font-display text-xl font-semibold text-ink">
+                  {project.title}
+                  <span class="font-sans text-base font-normal text-ink-mute"> — {project.subtitle}</span>
+                </h3>
+                <p class="mt-1 font-mono text-xs text-ink-mute">{project.role}</p>
+              </div>
+              <div class="flex shrink-0 items-center gap-3 pt-1">
+                {project.links.map((link) => (
+                  <a
+                    href={link.href}
+                    class="inline-flex items-center gap-1 text-sm text-accent underline-offset-4 hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {link.label}
+                    <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7m0 0H9m8 0v8" />
+                    </svg>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <p class="mt-4 text-sm leading-relaxed text-ink-soft">{project.description}</p>
+
+            <ul class="mt-4 space-y-2 text-sm text-ink-mute">
+              {project.highlights.map((h) => (
+                <li class="flex gap-2.5">
+                  <span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true"></span>
+                  <span>{h}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="mt-auto flex flex-wrap gap-2 pt-5">
+              {project.tags.map((tag) => (
+                <span class="rounded border border-line px-2 py-0.5 font-mono text-[11px] text-ink-mute">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </article>
       ))}
     </div>
   </div>
 </section>
 
-<style>
-  .gradient-text {
-    background: linear-gradient(135deg, #0f0 0%, #38bdf8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+<script>
+  // Respect reduced motion: don't loop the product video for those users.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('#work video').forEach((v) => {
+      v.removeAttribute('autoplay');
+      v.pause();
+    });
   }
-  
-  /* Animation for project cards */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  .project-card {
-    animation: fadeIn 0.5s ease-out forwards;
-    opacity: 0;
-  }
-  
-  .project-card:nth-child(1) { animation-delay: 0.1s; }
-  .project-card:nth-child(2) { animation-delay: 0.2s; }
-  .project-card:nth-child(3) { animation-delay: 0.3s; }
-  .project-card:nth-child(4) { animation-delay: 0.4s; }
-  .project-card:nth-child(5) { animation-delay: 0.5s; }
-  .project-card:nth-child(6) { animation-delay: 0.6s; }
-</style>
+</script>
