@@ -17,38 +17,20 @@ const projects = [
     media: 'video',
   },
   {
-    title: 'Pulse',
-    subtitle: 'Multi-agent marketing platform',
-    role: 'Creator & Lead Engineer · Team of 4 · 2025',
+    title: 'FinXAI Benchmark',
+    subtitle: 'Ground-truth XAI faithfulness benchmark',
+    role: 'First author · Preprint, under review · 2026',
     description:
-      'Production-grade multi-agent platform for social-media marketing: specialized autonomous agents for content, strategy, analytics, and research over a FastAPI backend.',
+      'Tests whether XAI attributions recover known feature importance: 23 explainability methods evaluated across 16 ML/DL models on a leakage-free, near-zero-signal financial forecaster.',
     highlights: [
-      'Fine-tuned an 8B LLM via knowledge distillation + QLoRA on A100s; self-hosted with vLLM and Modal',
-      'Fault-tolerant LLM gateway with multi-provider failover and per-agent model policies',
+      'SHAP, LIME, Integrated Gradients, TCAV, sparse autoencoders, and circuit analysis under one harness',
+      'Stock-clustered bootstrap inference; fully reproducible on Modal with a 23 GB corpus via Apache Spark',
     ],
-    tags: ['CrewAI', 'DSPy', 'vLLM', 'QLoRA', 'pgvector', 'Docker'],
-    links: [{ label: 'GitHub', href: 'https://github.com/pulse-mas/pulse-multi-agent-platform', external: true }],
-    media: 'agents',
-  },
-  {
-    title: 'NeuraViva',
-    subtitle: 'News-driven multi-stock forecasting',
-    role: 'Solo project · 2024',
-    description:
-      'End-to-end framework integrating financial-news sentiment with multi-stock time-series forecasting, reaching 0.02 MSE with SHAP/LIME explainability throughout.',
-    highlights: [
-      'SVM, XGBoost, Random Forest, and linear baselines benchmarked on a shared harness',
-      'Sentiment features fused with price history; attributions audited per prediction',
-    ],
-    tags: ['PyTorch', 'XGBoost', 'NLP', 'SHAP', 'Time Series'],
+    tags: ['SHAP', 'LIME', 'TCAV', 'Sparse Autoencoders', 'Apache Spark', 'Modal'],
     links: [
-      {
-        label: 'GitHub',
-        href: 'https://github.com/Abdulrahmann-Omar/FinSentImpact-A-News-Driven-Multi-Stock-Forecasting-Framework',
-        external: true,
-      },
+      { label: 'Paper & GitHub', href: 'https://github.com/Abdulrahmann-Omar/finxai-faithfulness-benchmark', external: true },
     ],
-    media: 'forecast',
+    media: 'xai',
   },
   {
     title: 'Fraud Detection',
@@ -105,46 +87,17 @@ const projects = [
                     <line x1="0" y1={i * 46} x2="640" y2={i * 46} />
                   ))}
                 </g>
-                {project.media === 'agents' && (
+                {project.media === 'xai' && (
                   <g>
-                    <g stroke="rgba(139,147,255,0.35)" stroke-width="1.2">
-                      <line x1="320" y1="180" x2="180" y2="100" />
-                      <line x1="320" y1="180" x2="470" y2="90" />
-                      <line x1="320" y1="180" x2="150" y2="260" />
-                      <line x1="320" y1="180" x2="480" y2="270" />
-                      <line x1="180" y1="100" x2="470" y2="90" />
-                      <line x1="150" y1="260" x2="480" y2="270" />
+                    <g fill="rgba(255,255,255,0.22)">
+                      <rect x="120" y="80" width="310" height="18" rx="3" />
+                      <rect x="120" y="120" width="250" height="18" rx="3" />
+                      <rect x="120" y="200" width="150" height="18" rx="3" />
+                      <rect x="120" y="240" width="95" height="18" rx="3" />
                     </g>
-                    <circle cx="320" cy="180" r="14" fill="#8b93ff" />
-                    <circle cx="180" cy="100" r="8" fill="none" stroke="#8b93ff" stroke-width="2" />
-                    <circle cx="470" cy="90" r="8" fill="none" stroke="#8b93ff" stroke-width="2" />
-                    <circle cx="150" cy="260" r="8" fill="none" stroke="#8b93ff" stroke-width="2" />
-                    <circle cx="480" cy="270" r="8" fill="none" stroke="#8b93ff" stroke-width="2" />
-                    <circle cx="320" cy="180" r="28" fill="none" stroke="rgba(139,147,255,0.25)" stroke-width="1" />
-                  </g>
-                )}
-                {project.media === 'forecast' && (
-                  <g>
-                    <polyline
-                      points="60,270 140,240 220,255 300,190 380,205 460,140 540,120 590,90"
-                      fill="none"
-                      stroke="#8b93ff"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <polyline
-                      points="60,290 140,285 220,300 300,250 380,265 460,225 540,215 590,190"
-                      fill="none"
-                      stroke="rgba(255,255,255,0.25)"
-                      stroke-width="1.5"
-                      stroke-dasharray="4 5"
-                    />
-                    <g fill="#8b93ff">
-                      <circle cx="300" cy="190" r="4" />
-                      <circle cx="460" cy="140" r="4" />
-                      <circle cx="590" cy="90" r="4" />
-                    </g>
+                    <rect x="120" y="160" width="400" height="18" rx="3" fill="#8b93ff" />
+                    <line x1="120" y1="60" x2="120" y2="278" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" />
+                    <line x1="452" y1="60" x2="452" y2="278" stroke="rgba(139,147,255,0.45)" stroke-width="1.5" stroke-dasharray="4 5" />
                   </g>
                 )}
                 {project.media === 'anomaly' && (
